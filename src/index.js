@@ -3,11 +3,15 @@ import logger from 'morgan';
 import helmet from 'helmet';
 
 import db from './config/db.config';
+import userRoute from './route/user.route';
 
 const app = express();
 
-app.use(helmet);
+app.use(helmet());
 app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use('/', userRoute);
 
 const port = process.env.PORT || 3000;
 
