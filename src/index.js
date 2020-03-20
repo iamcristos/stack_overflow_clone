@@ -4,6 +4,7 @@ import helmet from 'helmet';
 
 import db from './config/db.config';
 import userRoute from './route/user.route';
+import questionRoute from './route/question.route';
 
 const app = express();
 
@@ -11,7 +12,8 @@ app.use(helmet());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/', userRoute);
+app.use('/', [userRoute, questionRoute]);
+// app.use('/', questionRoute);
 
 const port = process.env.PORT || 3000;
 

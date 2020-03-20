@@ -5,7 +5,7 @@ import middleware from '../middleware/user.middleware';
 
 const router = express.Router();
 
-router.post('/register', [validation.UserValidation.createUserRules(), validation.UserValidation.validate], [middleware.validateUserSignUp], userController.createUser);
+router.post('/register', [validation.UserValidation.createUserRules(), validation.validate], [middleware.validateUserSignUp], userController.createUser);
 
 router.post('/login', [middleware.validateUserLogin], userController.loginUser);
 

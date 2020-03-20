@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import Query from '../util/query';
 import jwt from '../util/jwt';
 
@@ -24,6 +25,7 @@ class UserControler {
     const { user } = req;
     const token = this.jwt.generateToken(user);
     return res.status(200).send({
+      id: user._id,
       email: user.email,
       username: user.username,
       profilePicture: user.profilePicture,

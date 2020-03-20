@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import query from '../util/query';
 import jwt from '../util/jwt';
 
@@ -47,6 +48,15 @@ class UserMiddleware {
     } catch (error) {
       return res.status.send('error');
     }
+  }
+
+  static restrictedRoute(req, res, next) {
+    const { id } = req.params;
+    const user = req.authorizeUser._id;
+    if (id !== `${user}`) {
+      return res.status(403).send('unathourized');
+    }
+    return next();
   }
 }
 
