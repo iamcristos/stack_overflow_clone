@@ -13,8 +13,13 @@ router.route('/question/:id')
 
 
 router.post('/question/:id/upvote', [validation.Question.upVoteValidate(), validation.validate],
-  [middleware.user.protectedRoute, middleware.question.validateQuestion, 
+  [middleware.user.protectedRoute, middleware.question.validateQuestion,
     middleware.question.updateVote],
   questionController.upVote);
+
+router.post('/question/:id/downvote', [validation.Question.upVoteValidate(), validation.validate],
+  [middleware.user.protectedRoute, middleware.question.validateQuestion,
+    middleware.question.updateDownVote],
+  questionController.downVote);
 
 export default router;

@@ -1,4 +1,3 @@
-import { merge } from 'lodash';
 import query from '../util/query';
 
 class QuestionMiddleware {
@@ -23,38 +22,32 @@ class QuestionMiddleware {
   }
 
   static async updateVote(req, res, next) {
-    let { question } = req;
+    const { question } = req;
     const { userId } = req.body;
     const checkIfUserUpVote = question.upVote.indexOf(userId);
-    console.log(checkIfUserUpVote);
     const checkIfUserdownVote = question.downVote.indexOf(userId);
     if (checkIfUserUpVote !== -1) {
-      return res.status().send('user already upvoted');
+      return res.status(400).send('user already upvoted');
     }
     if (checkIfUserdownVote !== -1) {
-      const upVote = question.upVote.filter((item) => item !== userId);
-      console.log(upVote,'upvote')
-      question = merge(question, upVote);
-      console.log(question, 'after merge');
+      const downVote = question.downVote.filter((item) => `${item}` !== userId);
+      question.downVote = downVote;
       req.question = question;
     }
     return next();
   }
 
   static async updateDownVote(req, res, next) {
-    let { question } = req;
+    const { question } = req;
     const { userId } = req.body;
     const checkIfUserUpVote = question.upVote.indexOf(userId);
-    console.log(checkIfUserUpVote);
     const checkIfUserdownVote = question.downVote.indexOf(userId);
     if (checkIfUserdownVote !== -1) {
-      return res.status().send('user already upvoted');
+      return res.status(400).send('user already downvoted');
     }
     if (checkIfUserUpVote !== -1) {
-      const upVote = question.upVote.filter((item) => item !== userId);
-      console.log(upVote,'upvote')
-      question = merge(question, upVote);
-      console.log(question, 'after merge');
+      const upVote = question.upVote.filter((item) => `${item}` !== userId);
+      question.upVote = upVote;
       req.question = question;
     }
     return next();

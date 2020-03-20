@@ -9,7 +9,7 @@ class QuestionValidation {
     ];
   }
 
-  static userIdValidate(field) {
+  static userIdValidate() {
     return [
       // body(field).isMongoId(),
       body('userId').isMongoId(),

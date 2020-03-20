@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import Query from '../util/query';
 
 class QuestionControler {
@@ -29,11 +30,19 @@ class QuestionControler {
   }
 
   async upVote(req, res) {
-      let {question} = req;
-      const { userId } = req.body;
-      question.upVote.push(userId);
-      question = await question.save();
-      return res.status(200).send(question);
+    let { question } = req;
+    const { userId } = req.body;
+    question.upVote.push(userId);
+    question = await question.save();
+    return res.status(200).send(question);
+  }
+
+  async downVote(req, res) {
+    let { question } = req;
+    const { userId } = req.body;
+    question.downVote.push(userId);
+    question = await question.save();
+    return res.status(200).send(question);
   }
 }
 
