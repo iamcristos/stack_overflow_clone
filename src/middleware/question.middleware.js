@@ -52,6 +52,16 @@ class QuestionMiddleware {
     }
     return next();
   }
+
+  static checkSubscribtion(req, res, next) {
+    const { question } = req;
+    const { userId } = req.body;
+    const checkUserSubscribe = question.subscribedUsers.indexOf(userId);
+    if (checkUserSubscribe !== -1) {
+      return res.status(400).send('user already subscribed');
+    }
+    return next();
+  }
 }
 
 export default QuestionMiddleware;

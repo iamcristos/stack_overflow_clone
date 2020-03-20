@@ -22,4 +22,9 @@ router.post('/question/:id/downvote', [validation.Question.upVoteValidate(), val
     middleware.question.updateDownVote],
   questionController.downVote);
 
+router.post('/question/:id/subscribe', [validation.Question.upVoteValidate(), validation.validate],
+  [middleware.user.protectedRoute, middleware.question.validateQuestion,
+    middleware.question.checkSubscribtion],
+  questionController.subscribe);
+
 export default router;

@@ -44,6 +44,17 @@ class QuestionControler {
     question = await question.save();
     return res.status(200).send(question);
   }
+
+  async subscribe(req, res) {
+    try {
+      const { question, body } = req;
+      question.subscribedUsers.push(body.userId);
+      await question.save();
+      return res.status(200).send(question);
+    } catch (error) {
+      return res.status(500).send('network error');
+    }
+  }
 }
 
 const question = new QuestionControler(Query().question);
