@@ -1,6 +1,7 @@
 import { validationResult } from 'express-validator';
 import UserValidation from './user.validation';
 import Question from './question.validation';
+import Answer from './answer.validation';
 
 function validate(req, res, next) {
   const errors = validationResult(req);
@@ -16,6 +17,8 @@ function validate(req, res, next) {
 }
 
 
-const validation = { UserValidation, validate, Question };
+const validation = {
+  UserValidation, validate, Question, Answer,
+};
 
 export default validation;

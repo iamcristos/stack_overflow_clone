@@ -7,7 +7,7 @@ class QuestionQuery extends CrudQuery {
   }
 
   populateUser(id, field) {
-    return this.getById(id).populate(field);
+    return this.getById(id).populate(field, '-password').exec();
   }
 }
 

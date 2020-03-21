@@ -10,7 +10,7 @@ class QuestionMiddleware {
       }
       return false;
     } catch (error) {
-      return error;
+      return false;
     }
   }
 
