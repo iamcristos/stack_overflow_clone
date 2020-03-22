@@ -19,7 +19,7 @@ class UserMiddleware {
 
   static async validateUserSignUp(req, res, next) {
     if (await UserMiddleware.checkIfUserExists(req, res)) {
-      return res.status(404).send('user already exist');
+      return res.status(400).send('user already exist');
     }
     return next();
   }
@@ -46,7 +46,7 @@ class UserMiddleware {
       req.authorizeUser = user;
       return next();
     } catch (error) {
-      return res.status.send('error');
+      return res.status(500);
     }
   }
 

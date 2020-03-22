@@ -4,7 +4,7 @@ let url;
 
 switch (process.env.NODE_ENV) {
   case ('test'):
-    url = '';
+    url = 'mongodb://localhost/stactTest';
     break;
   case ('development'):
     url = '';

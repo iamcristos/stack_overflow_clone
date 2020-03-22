@@ -11,7 +11,7 @@ class UserQuery extends CrudQuery {
   }
 
   findUserByEmailUsername(email, username) {
-    return this.model.find({ $or: [{ email, username }] });
+    return this.model.findOne({ $or: [{ email }, { username }] });
   }
 }
 
