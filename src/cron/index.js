@@ -4,7 +4,7 @@ import { sgMail, messageHelper } from './email.cron';
 
 
 export default function emailCron() {
-  cron.schedule('45 * * * *', async () => {
+  cron.schedule('45 * * * * *', async () => {
     try {
       const users = await query().answer.getAnswersNotified();
       if (users && users.question.subscribedUsers.length > 0) {
