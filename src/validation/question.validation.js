@@ -34,6 +34,12 @@ class QuestionValidation {
       param('id').isMongoId().withMessage('invalid question id'),
     ];
   }
+
+  static search() {
+    return [
+      body('title').isString(),
+    ];
+  }
 }
 
 export default QuestionValidation;

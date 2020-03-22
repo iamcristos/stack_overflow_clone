@@ -8,6 +8,12 @@ class UserValidation {
       body('password').isLength({ min: 5 }),
     ];
   }
+
+  static searchUser() {
+    return [
+      body('username').exists(),
+    ];
+  }
 }
 
 export default UserValidation;

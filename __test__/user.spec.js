@@ -67,4 +67,10 @@ describe('User test', () => {
     expect(response.status).toBe(401);
     return done();
   });
+
+  test('should return questions', async () => {
+    const body = { username: 'r' };
+    const response = await server().get('/user/search').send(body);
+    expect(response.status).toBe(200);
+  });
 });

@@ -32,6 +32,8 @@ const questionSchema = mongoose.Schema({
 },
 { timestamps: true });
 
+questionSchema.index({ title: 1 });
+
 const Question = mongoose.model('question', questionSchema);
 
 export default Question;

@@ -5,6 +5,8 @@ import middleware from '../middleware';
 
 const router = express.Router();
 
+router.get('/questions/search', [validation.Question.search(), validation.validate], questionController.search);
+
 router.route('/question/:id')
   .post([validation.Question.createQuestionRules(), validation.validate],
     [middleware.user.protectedRoute, middleware.user.restrictedRoute],
@@ -26,5 +28,6 @@ router.post('/question/:id/subscribe', [validation.Question.upVoteValidate(), va
   [middleware.user.protectedRoute, middleware.question.validateQuestion,
     middleware.question.checkSubscribtion],
   questionController.subscribe);
+
 
 export default router;
