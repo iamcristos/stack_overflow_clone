@@ -25,7 +25,7 @@ class DbtestHelper {
   static async createQuestion() {
     const user = await DbtestHelper.createUser();
     const question = await model.Question.create({ title: 'title', body: 'the body', askedBy: user._id });
-    return question;
+    return { question, user };
   }
 
   static disconnectDb() {

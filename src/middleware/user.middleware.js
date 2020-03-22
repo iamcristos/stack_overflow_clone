@@ -46,7 +46,7 @@ class UserMiddleware {
       req.authorizeUser = user;
       return next();
     } catch (error) {
-      return res.status.send('error');
+      return res.status(500);
     }
   }
 

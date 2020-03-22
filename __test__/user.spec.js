@@ -61,4 +61,10 @@ describe('User test', () => {
     expect(response.body.length).toBe(2);
     return done();
   });
+
+  test('should return 401', async (done) => {
+    const response = await server().get('/user').set({ Authorization: 'tokenbgjjjthhjssjjhjen122bdjn' });
+    expect(response.status).toBe(401);
+    return done();
+  });
 });
