@@ -101,4 +101,10 @@ describe('Question test', () => {
     expect(response.status).toBe(404);
     return done();
   });
+
+  test('should return questions', async () => {
+    const body = { title: 'i' };
+    const response = await server().get('/questions/search').send(body);
+    expect(response.status).toBe(200);
+  });
 });

@@ -6,6 +6,7 @@ class QuestionControler {
     this.model = model;
     this.askQuestion = this.askQuestion.bind(this);
     this.viewQuestion = this.viewQuestion.bind(this);
+    this.search = this.search.bind(this);
   }
 
   async askQuestion(req, res) {
@@ -51,6 +52,18 @@ class QuestionControler {
       question.subscribedUsers.push(body.userId);
       await question.save();
       return res.status(200).send(question);
+    } catch (error) {
+      return res.status(500).send('network error');
+    }
+  }
+
+  async search(req, res) {
+    try {
+      const { title } = req.body;
+      const { page, pagination } = req.query || { page: 1, pagination: 10 };
+      const questions = await this.model.searchQuestion(title, page, pagination);
+      if (questions.length === 0) return res.status(404).send('no such question');
+      return res.status(200).send(questions);
     } catch (error) {
       return res.status(500).send('network error');
     }

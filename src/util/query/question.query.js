@@ -9,6 +9,11 @@ class QuestionQuery extends CrudQuery {
   populateUser(id, field) {
     return this.getById(id).populate(field, '-password').exec();
   }
+
+  searchQuestion(title, page = 1, pagination = 10) {
+    return this.model.find({ title: new RegExp(title, 'gi') })
+      .skip((page - 1) * pagination).limit(pagination).lean();
+  }
 }
 
 export default QuestionQuery;

@@ -9,6 +9,7 @@ class UserControler {
     this.createUser = this.createUser.bind(this);
     this.loginUser = this.loginUser.bind(this);
     this.getAllUser = this.getAllUser.bind(this);
+    this.searchUser = this.searchUser.bind(this);
   }
 
   async createUser(req, res) {
@@ -17,7 +18,6 @@ class UserControler {
       const user = await this.query.createUser(body);
       return res.status(201).send(user);
     } catch (error) {
-      console.error(error);
       return res.status(500).send('network error');
     }
   }
@@ -38,6 +38,18 @@ class UserControler {
     try {
       const user = await this.query.getAll.select('-password').exec();
       return res.status(200).send(user);
+    } catch (error) {
+      return res.status(500).send('network error');
+    }
+  }
+
+  async searchUser(req, res) {
+    try {
+      const { username } = req.body;
+      const { page, pagination } = req.query || { page: 1, pagination: 10 };
+      const users = await this.query.searchUser(username, page, pagination);
+      if (users.length === 0) return res.status(404).send('no such user with such username');
+      return res.status(200).send(users);
     } catch (error) {
       return res.status(500).send('network error');
     }
