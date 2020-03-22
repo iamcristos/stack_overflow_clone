@@ -47,4 +47,12 @@ describe('Answer test', () => {
     expect(response.text).toBe('question dont exists');
     return done();
   });
+
+  test('should return questions', async () => {
+    const body = { answer: 'i' };
+    const response = await server().get('/answer/search').send(body);
+    expect(response.status).toBe(200);
+    expect(response.body[0].answeredBy._id.toString()).toBe(`${user._id}`);
+    expect(response.body[0].question._id.toString()).toBe(`${question._id}`);
+  });
 });

@@ -5,6 +5,8 @@ import middleware from '../middleware';
 
 const router = express.Router();
 
+router.get('/answer/search', [validation.Answer.search(), validation.validate], answerController.search);
+
 router.route('/answer/:id/:question')
   .post([validation.Answer.createAnswerRules(), validation.validate],
     [middleware.user.protectedRoute, middleware.user.restrictedRoute],
@@ -13,5 +15,6 @@ router.route('/answer/:id/:question')
   .get([validation.Answer.validateIds(), validation.validate],
     [middleware.user.protectedRoute, middleware.answer.validateQuestion],
     answerController.viewAnswers);
+
 
 export default router;

@@ -21,6 +21,8 @@ const answerSchema = mongoose.Schema({
   },
 });
 
+answerSchema.index({ answer: 1 });
+
 const Answer = mongoose.model('answer', answerSchema);
 
 export default Answer;

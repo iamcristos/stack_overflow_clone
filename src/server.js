@@ -17,5 +17,4 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', [userRoute, questionRoute, answerRoute]);
 
 
-
 export default app;

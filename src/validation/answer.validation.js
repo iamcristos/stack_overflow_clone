@@ -15,6 +15,12 @@ class AnswerValidation {
       param('question').isMongoId().withMessage('question is required'),
     ];
   }
+
+  static search() {
+    return [
+      body('answer').exists(),
+    ];
+  }
 }
 
 export default AnswerValidation;
