@@ -21,7 +21,7 @@ class AnswerController {
     try {
       const { question } = req.params;
       const answers = await this.model.getMany({ question }).exec();
-      if (!answers.lenght) return res.status(404).send('no answers yet');
+      if (answers.lenght === 0) return res.status(404).send('no answers yet');
       return res.status(200).send(answers);
     } catch (error) {
       return res.status(500).send('network error');

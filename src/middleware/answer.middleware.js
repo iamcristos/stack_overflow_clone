@@ -1,4 +1,3 @@
-import query from '../util/query';
 import QuestionMiddleware from './question.middleware';
 
 class Answermiddleware {
