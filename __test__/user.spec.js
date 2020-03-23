@@ -1,13 +1,12 @@
 /* eslint-disable no-underscore-dangle */
 import server from './index';
 import help from './db';
-import jwt from '../src/util/jwt';
+
 
 describe('User test', () => {
-  let user;
   beforeAll(async (done) => {
     await help.connectDb();
-    user = await help.createUser();
+    await help.createUser();
     return done();
   });
 
