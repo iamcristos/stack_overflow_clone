@@ -54,20 +54,6 @@ describe('User test', () => {
     return done();
   });
 
-  test('should return all users', async (done) => {
-    const token = jwt.generateToken(user);
-    const response = await server().get('/user').set({ Authorization: token });
-    expect(response.status).toBe(200);
-    expect(response.body.length).toBe(2);
-    return done();
-  });
-
-  test('should return 401', async (done) => {
-    const response = await server().get('/user').set({ Authorization: 'tokenbgjjjthhjssjjhjen122bdjn' });
-    expect(response.status).toBe(401);
-    return done();
-  });
-
   test('should return questions', async () => {
     const body = { username: 'r' };
     const response = await server().get('/user/search').send(body);
