@@ -1,9 +1,7 @@
 import sgMail from '@sendgrid/mail';
-import dotenv from 'dotenv';
+import secret from '../config/secret';
 
-dotenv.config();
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgMail.setApiKey(secret.SENDGRID_API_KEY);
 
 function messageHelper(to, subject) {
   return {

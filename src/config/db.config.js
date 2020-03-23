@@ -1,4 +1,7 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 let url;
 
@@ -7,13 +10,13 @@ switch (process.env.NODE_ENV) {
     url = 'mongodb://localhost/stactTest';
     break;
   case ('development'):
-    url = '';
+    url = process.env.DEVELOPMENT_DB;
     break;
   case ('staging'):
-    url = '';
+    url = process.env.STAGING_DB;
     break;
   case ('production'):
-    url = '';
+    url = process.env.DB;
     break;
   default:
     url = 'mongodb://localhost/stack';
