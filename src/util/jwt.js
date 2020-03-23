@@ -3,7 +3,7 @@ import secret from '../config/secret';
 
 function generateToken(user) {
   // eslint-disable-next-line no-underscore-dangle
-  const token = jwt.sign({ data: user._id }, 'secret', { expiresIn: '1d' });
+  const token = jwt.sign({ data: user._id }, secret.JWT_SECRET, { expiresIn: '1d' });
   return token;
 }
 
