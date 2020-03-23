@@ -9,7 +9,6 @@ router.post('/register', [validation.UserValidation.createUserRules(), validatio
 
 router.post('/login', [middleware.validateUserLogin], userController.loginUser);
 
-router.get('/user', [middleware.protectedRoute], userController.getAllUser);
 
 router.get('/user/search', [validation.UserValidation.searchUser(), validation.validate], userController.searchUser);
 
