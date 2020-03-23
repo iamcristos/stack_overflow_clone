@@ -1,13 +1,12 @@
 /* eslint-disable no-underscore-dangle */
 import server from './index';
 import help from './db';
-import jwt from '../src/util/jwt';
+
 
 describe('User test', () => {
-  let user;
   beforeAll(async (done) => {
     await help.connectDb();
-    user = await help.createUser();
+    await help.createUser();
     return done();
   });
 
@@ -51,20 +50,6 @@ describe('User test', () => {
     const response = await server().post('/login').send(body);
     expect(response.status).toBe(401);
     expect(response.text).toBe('invalid operation');
-    return done();
-  });
-
-  test('should return all users', async (done) => {
-    const token = jwt.generateToken(user);
-    const response = await server().get('/user').set({ Authorization: token });
-    expect(response.status).toBe(200);
-    expect(response.body.length).toBe(2);
-    return done();
-  });
-
-  test('should return 401', async (done) => {
-    const response = await server().get('/user').set({ Authorization: 'tokenbgjjjthhjssjjhjen122bdjn' });
-    expect(response.status).toBe(401);
     return done();
   });
 

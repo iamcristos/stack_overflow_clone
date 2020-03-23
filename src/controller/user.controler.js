@@ -8,7 +8,6 @@ class UserControler {
     this.jwt = jwt;
     this.createUser = this.createUser.bind(this);
     this.loginUser = this.loginUser.bind(this);
-    this.getAllUser = this.getAllUser.bind(this);
     this.searchUser = this.searchUser.bind(this);
   }
 
@@ -34,14 +33,6 @@ class UserControler {
     });
   }
 
-  async getAllUser(req, res) {
-    try {
-      const user = await this.query.getAll.select('-password').exec();
-      return res.status(200).send(user);
-    } catch (error) {
-      return res.status(500).send('network error');
-    }
-  }
 
   async searchUser(req, res) {
     try {
