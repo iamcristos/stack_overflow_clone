@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run build && node dist/index.js",
+    "build": "babel src --out-dir dist",
     "start:dev": "nodemon --exec babel-node src/index.js",
     "test": " cross-env NODE_ENV=test jest  --verbose --detectOpenHandles --forceExit"
   },
@@ -19,6 +21,7 @@
   },
   "homepage": "https://github.com/iamcristos/stack_overflow_clone#readme",
   "dependencies": {
+    "@babel/cli": "^7.8.4",
     "@sendgrid/mail": "^6.5.5",
     "babel-jest": "^25.1.0",
     "bcrypt": "^4.0.1",
