@@ -2,6 +2,10 @@
 
 # stack_overflow_clone
 
+## Endpoints
+
+https://documenter.getpostman.com/view/5376766/SzS8uRbn
+
 ### Key Features
 
 - Create your user accounts with email, username and password 
@@ -21,7 +25,7 @@
 
 ## Tech Stack
 
-Node.js, Express framework, MongoDB with Mongoose ODM, JWT, Sendgrid, Bcrypt, Jest, Supertest, Node-cron
+Node.js, Express framework, MongoDB with Mongoose ORM, JWT, Sendgrid, Bcrypt, Jest, Supertest, Node-cron, Babel
 
 ## Getting started
 
@@ -34,7 +38,7 @@ To get the server running locally:
 
 # Back-end
 
-We use Node.js and it's Express framework to build the server and APIs. For the chat app, we use Socket.IO.
+I use Node.js and it's Express framework to build the server and APIs. For the chat app, we use Socket.IO.
 
 - [**Node.js**](https://nodejs.org/en/) is a JavaScript runtime build on Chrome's V8 engine. Being an interface to the V8 JavaScript runtime, it enables super fast JavaScript interpreter that runs in the Chrome browser. Its non-blocking I/O model is ideal for real-time applications, like chats, even tho it is single threaded. Event loop takes care of all the asynchronous I/O operations without blocking synchronous tasks. That means actions like reading or writing to the database, or network requests can be performed very quickly and not block the process.
 
@@ -76,10 +80,6 @@ Travis CI has a hub and automate all process of automated integration, from base
 
 ## Hosting & Environments
 
-### **Heroku - Production**
-
-Heroku is a cloud platform as a service (PaaS) supporting several programming languages. We chose Heroku over other providers for its simplicity (you can get a server up and running in few clicks).
-
 # Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
@@ -89,6 +89,3 @@ JWT_Secret'
 SENDGRID_API_KEY'
 ```
 
-## Endpoints
-
-https://documenter.getpostman.com/view/5376766/SzS8uRbn
