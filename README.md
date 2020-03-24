@@ -89,3 +89,29 @@ JWT_Secret'
 SENDGRID_API_KEY'
 ```
 
+### Errors and Status Codes
+
+If a request fails any validations, expect errors in the following format:
+
+If requests on creating or updating event fails any validations, expect errors in the following format:
+
+```source-json
+{
+    "status": 422,
+    "message": [
+        "field": {
+            "The n field is required."
+        }
+    ]
+}
+```
+
+### Other status codes:
+
+401 for Unauthorized requests, when a request requires authentication but it isn't provided
+
+403 for Forbidden requests, when a request may be valid but the user doesn't have permissions to perform the action
+
+404 for Not found requests, when a resource can't be found to fulfill the request
+
+
