@@ -1,4 +1,5 @@
 import Query from '../util/query';
+import sendEmailQueue from '../config/bull.config';
 
 class AnswerController {
   constructor(model) {
@@ -12,6 +13,7 @@ class AnswerController {
     try {
       const { id, question } = req.params;
       const answer = await this.model.addDoc({ ...req.body, question, answeredBy: id });
+      sendEmailQueue.add({ data: question }, { attempts: 2 });
       return res.status(200).send(answer);
     } catch (error) {
       return res.status(500).send('network error');

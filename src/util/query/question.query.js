@@ -14,6 +14,10 @@ class QuestionQuery extends CrudQuery {
     return this.model.find({ title: new RegExp(title, 'gi') })
       .skip((page - 1) * pagination).limit(pagination).lean();
   }
+
+  notifySubscriners(id) {
+    return this.getById(id).populate('subscribedUsers', 'email -_id').exec();
+  }
 }
 
 export default QuestionQuery;

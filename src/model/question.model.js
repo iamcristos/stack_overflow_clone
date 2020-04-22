@@ -16,17 +16,14 @@ const questionSchema = mongoose.Schema({
   },
   upVote: [{
     type: mongoose.Schema.Types.ObjectId,
-    // unique: true,
     ref: 'user',
   }],
   downVote: [{
     type: mongoose.Schema.Types.ObjectId,
-    // unique: true,
     ref: 'user',
   }],
   subscribedUsers: [{
     type: mongoose.Schema.Types.ObjectId,
-    // unique: true,
     ref: 'user',
   }],
 },

@@ -21,7 +21,7 @@ https://documenter.getpostman.com/view/5376766/SzS8uRbn
     - See answers
     - Search Answers
 
-- a cron job is responsible for notifying users that subscribe to a question when there's a new answer
+- a message queue is responsible for notifying users that subscribe to a question when there's a new answer
 
 ## Tech Stack
 
@@ -87,6 +87,7 @@ In order for the app to function correctly, the user must set up their own envir
 ```
 JWT_Secret'
 SENDGRID_API_KEY'
+REDIS_URL'
 ```
 
 ### Errors and Status Codes

@@ -1,6 +1,7 @@
 import app from './server';
 import db from './config/db.config';
-import cron from './cron';
+import sendEmailQueue from './config/bull.config';
+import sendEmail from './cron/notification';
 
 const port = process.env.PORT || 3000;
 
@@ -11,7 +12,12 @@ db().then(() => {
   console.log('db has started');
 }).catch((err) => console.error(err));
 
-cron();
+
+sendEmailQueue.process(async (job) => {
+  await sendEmail(job.data);
+});
+
+// 5e74d39607475c41414173b7
 
 app.listen(port, () => {
   console.log(`app is listening at ${port}`);
